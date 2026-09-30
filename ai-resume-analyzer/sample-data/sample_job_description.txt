@@ -1,6 +1,0 @@
-Junior Python Developer
-
-We are seeking a junior Python developer to build and maintain web features.
-Required skills: Python, Flask, SQL, Git, HTML, CSS, and JavaScript.
-Nice to have: Docker and AWS. The candidate should be able to explain projects,
-collaborate with a team, and communicate technical work clearly.
