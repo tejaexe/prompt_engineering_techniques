@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-lg-9">
+  <h1 class="display-6 fw-bold">AI Resume Analyzer & Job Matcher</h1>
+  <p class="lead text-secondary">Upload a PDF/DOCX resume, add a job description, and receive a structured skill-match report.</p>
+  {% if not api_ready %}<div class="alert alert-warning"><strong>Demo mode:</strong> MISTRAL_API_KEY is not set, so results use transparent keyword matching. Add your key in <code>.env</code> for AI analysis.</div>{% endif %}
+  <form action="{{ url_for('analyze') }}" method="post" enctype="multipart/form-data" class="card shadow-sm p-4">
+    <div class="mb-3"><label class="form-label fw-semibold" for="resume">Resume (PDF or DOCX, max 5 MB)</label><input class="form-control" type="file" id="resume" name="resume" accept=".pdf,.docx" required></div>
+    <div class="mb-3"><label class="form-label fw-semibold" for="job_description">Job description</label><textarea class="form-control" id="job_description" name="job_description" rows="11" placeholder="Paste the role requirements and skills here..." required></textarea></div>
+    <button class="btn btn-primary btn-lg" type="submit">Analyze match</button>
+  </form>
+  <p class="small text-secondary mt-3">The app reports evidence from the supplied documents and labels missing information instead of inventing qualifications.</p>
+</div></div>
+{% endblock %}

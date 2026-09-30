@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Analysis | ResumeMatch AI{% endblock %}
+{% block content %}
+{% if demo_mode %}<div class="alert alert-warning">These are demo-mode keyword results. They are not AI-generated and should not be used for hiring decisions.</div>{% endif %}
+<div class="d-flex justify-content-between align-items-center mb-4"><div><h1 class="h2 mb-1">Match analysis</h1><p class="text-secondary mb-0">Structured, evidence-based comparison</p></div><div class="score">{{ result.match_score }}<small>/100</small></div></div>
+<div class="row g-4">
+  <div class="col-lg-7"><div class="card h-100 shadow-sm"><div class="card-body"><h2 class="h5">Candidate summary</h2><p>{{ result.candidate_summary }}</p><h2 class="h5 mt-4">Score explanation</h2><p>{{ result.score_explanation }}</p><h2 class="h5 mt-4">Resume improvements</h2><ul>{% for item in result.resume_improvements %}<li>{{ item }}</li>{% endfor %}</ul><h2 class="h5 mt-4">Interview preparation</h2><ol>{% for item in result.interview_questions %}<li>{{ item }}</li>{% endfor %}</ol></div></div></div>
+  <div class="col-lg-5"><div class="card shadow-sm mb-4"><div class="card-body"><h2 class="h5">Skills match</h2><h3 class="h6 text-success">Matched</h3><p>{% for item in result.matched_skills %}<span class="badge text-bg-success me-1">{{ item }}</span>{% else %}No direct matches found.{% endfor %}</p><h3 class="h6 text-danger mt-3">Gaps</h3><p>{% for item in result.skill_gaps %}<span class="badge text-bg-danger me-1">{{ item }}</span>{% else %}No gaps identified.{% endfor %}</p><h3 class="h6 mt-3">Missing information</h3><ul>{% for item in result.missing_information %}<li>{{ item }}</li>{% endfor %}</ul></div></div><form action="{{ url_for('report') }}" method="post"><input type="hidden" name="result" value='{{ result|tojson }}'><button class="btn btn-outline-primary w-100">Download PDF report</button></form></div>
+</div>
+<div class="card shadow-sm mt-4"><div class="card-body"><h2 class="h5">Cover letter draft</h2><p class="preserve-lines">{{ result.cover_letter }}</p></div></div>
+{% endblock %}

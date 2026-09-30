@@ -1,0 +1,4 @@
+body { background: #f6f8fb; }
+.score { background: #0d6efd; border-radius: 50%; color: white; font-size: 1.8rem; font-weight: 700; height: 92px; width: 92px; display: grid; place-content: center; }
+.score small { font-size: .8rem; font-weight: 400; }
+.preserve-lines { white-space: pre-line; }
